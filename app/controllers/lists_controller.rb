@@ -15,7 +15,7 @@ class ListsController < ApplicationController
       # @lists = policy_scope(List).where(sql_query, query: "%#{params[:query]}%")
     else
       @lists = List.all
-      @upvoted = List.where()
+      # @upvoted = List.group(“lists.id”).joins(“LEFT OUTER JOIN likes ON likes.list_id = lists.id”).select(“COUNT(likes.*) as votes”).order(“votes DESC”)
       # @lists = policy_scope(List).order(created_at: :desc)
     end
   end
